@@ -1,4 +1,4 @@
-module Main where
+module PartOne where
 
 import System.IO
 import Control.Monad
@@ -9,6 +9,10 @@ countDepthIncreases [_x] = 0
 countDepthIncreases (x : y : ys)
     | y > x = 1 + countDepthIncreases (y:ys)
     | otherwise = countDepthIncreases (y:ys)
+
+test1 = TestCase (assertEqual "example case" 7 (countDepthIncreases [199, 200, 208, 201, 200, 207, 240, 269, 260, 263]))
+
+tests = TestList [TestLabel "test1" test1]
 
 main :: IO ()
 main = do

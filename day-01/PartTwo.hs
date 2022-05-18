@@ -18,18 +18,17 @@ measure [_x] = 0
 measure [_x, _y] = 0
 measure (x:y:z:zs) = x + y + z
 
-
 main :: IO ()
 main = do
     handle <- openFile "data.txt" ReadMode
     contents <- hGetContents handle
     let singlewords = words contents
-    let result = countDepthIncreases $ f singlewords
+    let result = countDepthIncreases $ mapToInt singlewords
     print result
     hClose handle
 
-f :: [String] -> [Int]
-f = map read
+mapToInt :: [String] -> [Int]
+mapToInt = map read
 
 test1 = TestCase (assertEqual "example case" 5 (countDepthIncreases [199, 200, 208, 201, 200, 207, 240, 269, 260, 263]))
 
